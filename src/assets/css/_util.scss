@@ -1,0 +1,76 @@
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: inherit;
+  height: inherit;
+
+  .image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: inherit;
+  }
+}
+
+.ellipsis-normal {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%global-transition {
+  transition: var(--global-transition);
+  -webkit-transition: var(--global-transition);
+  -moz-transition: var(--global-transition);
+  -o-transition: var(--global-transition);
+}
+
+%background-center {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.content-padder {
+  padding: 0 2.5em;
+}
+
+.baba-icon-16 {
+  width: 16px;
+  height: 16px;
+}
+
+.baba-icon-24 {
+  width: 24px;
+  height: 24px;
+}
+
+.baba-icon-32 {
+  width: 32px;
+  height: 32px;
+}
+
+.baba-bg {
+  &--blue {
+    background-color: #61d4f7;
+  }
+  &--red {
+    background-color: #e34c26;
+  }
+  &--yellow {
+    background-color: #f9bf3f;
+  }
+  &--orange {
+    background-color: #b07219;
+  }
+  &--purple {
+    background-color: #a84cb8;
+  }
+  &--green {
+    background-color: #5cb331;
+  }
+  &--blue-dark {
+    background-color: #00728b;
+  }
+}

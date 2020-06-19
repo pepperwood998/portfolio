@@ -1,0 +1,11 @@
+@mixin heading-smooth($size: 1em, $marginBottom: 0) {
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: $size;
+  margin-bottom: $marginBottom;
+}
+@mixin heading-banner-smooth($size: 1em, $marginBottom: 0) {
+  @include heading-smooth($size, $marginBottom);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

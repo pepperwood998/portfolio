@@ -1,0 +1,217 @@
+@mixin card-theme($color) {
+  color: $color;
+  .basic-card-icon-wrapper {
+    background-color: $color;
+    svg {
+      color: #fff;
+    }
+  }
+}
+
+.basic-card {
+  padding: 1.5em;
+  box-shadow: 0px 0px 56px -8px rgba(0, 0, 0, 0.17);
+  border-bottom: 2px solid;
+  position: relative;
+
+  &--blue {
+    @include card-theme(#61d4f7);
+  }
+  &--red {
+    @include card-theme(#e34c26);
+  }
+  &--yellow {
+    @include card-theme(#f9bf3f);
+  }
+  &--orange {
+    @include card-theme(#b07219);
+  }
+  &--purple {
+    @include card-theme(#a84cb8);
+  }
+  &--green {
+    @include card-theme(#5cb331);
+  }
+  &--blue-dark {
+    @include card-theme(#00728b);
+  }
+  &--pop {
+    text-align: center;
+    margin-bottom: 4em;
+
+    .basic-card-icon-wrapper {
+      position: absolute;
+      top: -1.5em;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6em;
+      height: 3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before,
+      &::after {
+        position: absolute;
+        content: '';
+        left: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+      }
+      &::before {
+        top: -2em;
+        border-width: 0 3em 2em 3em;
+        border-color: transparent;
+        border-bottom-color: inherit;
+      }
+      &::after {
+        bottom: -2em;
+        border-width: 2em 3em 0em 3em;
+        border-color: transparent;
+        border-top-color: inherit;
+      }
+    }
+    .basic-card-icon {
+      margin-bottom: 0;
+      color: #fff;
+    }
+    .basic-card-title {
+      margin-top: 3.5em;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+}
+.basic-card-icon {
+  margin-bottom: 1.5em;
+}
+.basic-card-title {
+  margin-bottom: 1.5em;
+  font-family: 'Quicksand', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+.basic-card-desc {
+  color: #212529;
+}
+
+.project-card {
+  @extend %background-center;
+  position: relative;
+  justify-self: center;
+  max-width: 450px;
+  width: 100%;
+
+  &:hover {
+    .project-card-inner {
+      opacity: 1;
+      h3,
+      span {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+  &__project-title {
+    h3,
+    span {
+      @extend %global-transition;
+    }
+    span {
+      display: block;
+      color: rgba(255, 255, 255, 0.7);
+      transform: translate3d(0, 15px, 0);
+    }
+  }
+  &__project-card-status {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.project-card-inner {
+  @extend %global-transition;
+  padding: 40px;
+  height: 400px;
+  opacity: 0;
+  background-color: #2c98f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h3,
+  a {
+    color: #fff;
+  }
+  h3 {
+    @include heading-banner-smooth(2em);
+    transform: translate3d(0, -15px, 0);
+  }
+}
+.project-card-status {
+  max-width: 80px;
+  overflow: hidden;
+  margin-bottom: 0.5em;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  color: #000 !important;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+.card-accordion {
+  display: flex;
+  flex-direction: column;
+
+  & + .card-accordion {
+    margin-top: 0.5em;
+  }
+}
+.card-accordion-body {
+  padding: 1.5em;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  margin-top: 0.3em;
+}
+
+.contact-info-card {
+  display: flex;
+  align-items: center;
+  color: #2c98f0;
+  p {
+    margin: 0;
+  }
+  & + .contact-info-card {
+    margin-top: 1em;
+  }
+}
+.contact-info-icon {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f3f7;
+}
+.contact-info-text {
+  padding-left: 1.5em;
+  flex: 1;
+}
+
+@media screen and (min-width: 992px) {
+  .basic-card--pop .basic-card-icon-wrapper {
+    top: -1.5em;
+    left: 0;
+    transform: translate(0, 0);
+  }
+  .project-card {
+    max-width: 100%;
+  }
+  .project-card__project-card-status {
+    flex-direction: row;
+  }
+  .project-card-status {
+    margin-right: 0.5em;
+  }
+}
