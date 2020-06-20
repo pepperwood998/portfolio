@@ -19,11 +19,14 @@
   white-space: nowrap;
 }
 
+@mixin propTransition($prop: all) {
+  transition: $prop var(--global-transition);
+  -webkit-transition: $prop var(--global-transition);
+  -moz-transition: $prop var(--global-transition);
+  -o-transition: $prop var(--global-transition);
+}
 %global-transition {
-  transition: var(--global-transition);
-  -webkit-transition: var(--global-transition);
-  -moz-transition: var(--global-transition);
-  -o-transition: var(--global-transition);
+  @include propTransition();
 }
 
 %background-center {

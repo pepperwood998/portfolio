@@ -1,0 +1,123 @@
+$screenBreakPoints: (
+  'xs': 336px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px
+);
+@function getScreenBreakSize($name) {
+  @return map-get($screenBreakPoints, $name);
+}
+@mixin applyScreenBreakOff {
+  @media screen and (min-width: getScreenBreakSize('xs')) {
+    &-sm,
+    &-md,
+    &-lg,
+    &-xl {
+      @content;
+    }
+  }
+  @media screen and (min-width: getScreenBreakSize('sm')) {
+    &-md,
+    &-lg,
+    &-xl {
+      @content;
+    }
+  }
+  @media screen and (min-width: getScreenBreakSize('md')) {
+    &-lg,
+    &-xl {
+      @content;
+    }
+  }
+  @media screen and (min-width: getScreenBreakSize('lg')) {
+    &-xl {
+      @content;
+    }
+  }
+}
+@mixin applyScreenBreakOn {
+  @media screen and (min-width: getScreenBreakSize('xs')) {
+    &-xs {
+      @content;
+    }
+  }
+  @media screen and (min-width: getScreenBreakSize('sm')) {
+    &-xs,
+    &-sm {
+      @content;
+    }
+  }
+  @media screen and (min-width: getScreenBreakSize('md')) {
+    &-xs,
+    &-sm,
+    &-md {
+      @content;
+    }
+  }
+  @media screen and (min-width: getScreenBreakSize('lg')) {
+    &-xs,
+    &-sm,
+    &-md,
+    &-lg {
+      @content;
+    }
+  }
+  @media screen and (min-width: getScreenBreakSize('xl')) {
+    @content;
+  }
+}
+
+.display-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-gap: 1.5em;
+
+  &.display-grid-2 {
+    @include applyScreenBreakOn {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  &.display-grid-3 {
+    @include applyScreenBreakOn {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  &.display-grid-4 {
+    @include applyScreenBreakOn {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
+
+.d-flex-row {
+  display: flex;
+  flex-direction: column;
+
+  &--al-center {
+    align-items: center;
+  }
+  @include applyScreenBreakOff {
+    flex-direction: column;
+  }
+  @include applyScreenBreakOn {
+    flex-direction: row;
+    &.d-flex-row--al-center {
+      align-items: unset;
+    }
+  }
+}
+@mixin addSpace($paddingLeft: 0, $paddingTop: 0) {
+  &.d-flex-row > *:not(:first-child) {
+    padding-left: 0;
+    padding-top: $paddingTop;
+  }
+  @each $name, $size in $screenBreakPoints {
+    @media screen and (min-width: $size) {
+      &.d-flex-row-#{$name} > *:not(:first-child) {
+        padding-left: $paddingLeft;
+        padding-top: 0;
+      }
+    }
+  }
+}

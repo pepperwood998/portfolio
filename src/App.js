@@ -21,9 +21,9 @@ import {
   WorkIcon
 } from './assets/svg';
 import { formatNumber } from './Common';
-import { MenuButton } from './components/Buttons';
-import MainSection from './components/Sections/S_MainSection';
-import { Sidebar } from './components/Sidebar';
+import { MenuButton } from './components/buttons';
+import MainSection from './components/sections/S_MainSection';
+import { Sidebar } from './components/sidebar';
 import { ContactSection, EducationSection, ProjectSection } from './sections';
 
 function App() {
@@ -140,7 +140,7 @@ function App() {
               line of blind text by the name of Lorem Ipsum decided to leave for
               the far World of Grammar.
             </p>
-            <div className='basic-grid basic-grid--four mb-5'>
+            <div className='display-grid display-grid-2-sm display-grid-4-lg mb-5'>
               {aboutItems.map((v, i) => (
                 <div className={`basic-card basic-card--${v.theme}`} key={i}>
                   <div className='basic-card-inner'>
@@ -158,7 +158,7 @@ function App() {
             >
               <div className='statistic-banner__overlay'></div>
               <div className='statistic-banner__content content-padder'>
-                <div className='basic-grid basic-grid--four'>
+                <div className='display-grid display-grid-2-sm display-grid-4-md'>
                   {statisticItems.map((v, i) => (
                     <div className='statistic-block' key={i}>
                       <span className='statistic-counter'>
@@ -179,7 +179,7 @@ function App() {
               versalia, put her initial into the belt and made herself on the
               way.
             </p>
-            <div className='basic-grid basic-grid--three pt-5'>
+            <div className='display-grid display-grid-2-sm display-grid-3-lg pt-5'>
               {specialtyItems.map((v, i) => {
                 return (
                   <div

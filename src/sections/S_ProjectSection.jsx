@@ -8,7 +8,7 @@ function ProjectSection() {
 
   return (
     <React.Fragment>
-      <div className='basic-grid basic-grid--two mb-4'>
+      <div className='display-grid display-grid-2-lg mb-4'>
         {projects.map((v, i) => (
           <div
             className='project-card'

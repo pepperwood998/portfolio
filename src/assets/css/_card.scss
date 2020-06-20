@@ -176,8 +176,7 @@
 }
 
 .contact-info-card {
-  display: flex;
-  align-items: center;
+  @include addSpace(1.5em, 0.5em);
   color: #2c98f0;
   p {
     margin: 0;
@@ -195,7 +194,6 @@
   background-color: #f2f3f7;
 }
 .contact-info-text {
-  padding-left: 1.5em;
   flex: 1;
 }
 

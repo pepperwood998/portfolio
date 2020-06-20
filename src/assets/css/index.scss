@@ -1,10 +1,11 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 @import 'reset';
-@import 'util';
-@import 'icon';
-@import 'button';
 @import 'font';
+@import 'util';
+@import 'layout';
+@import 'button';
 @import 'card';
+@import 'icon';
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
@@ -218,30 +219,6 @@ p {
   }
 }
 
-.basic-grid {
-  display: grid;
-  grid-gap: 1.5em;
-  grid-template-columns: minmax(0, 1fr);
-
-  @media only screen and (min-width: 600px) {
-    &.basic-grid--four,
-    &.basic-grid--three {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  @media only screen and (min-width: 992px) {
-    &.basic-grid--two {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    &.basic-grid--three {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-    &.basic-grid--four {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
-}
-
 .statistic-banner {
   padding: 3em 0;
   background-position: center center;
@@ -354,6 +331,10 @@ p {
   }
 }
 
+.contact-section-container {
+  @include addSpace(2em, 2em);
+}
+
 .panel {
   padding: 1.2em 2em;
   text-align: left;
@@ -377,6 +358,37 @@ p {
       color: #fff;
     }
   }
+}
+
+form.form-vertical {
+  .form-item {
+    & + .form-item {
+      margin-top: 1em;
+    }
+  }
+}
+input.input-outline-none,
+textarea.input-outline-none {
+  &:focus {
+    outline: none;
+    background-color: #f0f0f0;
+  }
+}
+input.input-text,
+textarea.input-text {
+  @include propTransition(background-color);
+  padding: 0.8em 1.2em;
+  width: 100%;
+  border: none;
+  background-color: #f2f3f7;
+
+  &::placeholder {
+    color: #9e9e9e;
+  }
+}
+
+.contact-section {
+  max-width: 380px;
 }
 
 @media screen and (min-width: 992px) {
