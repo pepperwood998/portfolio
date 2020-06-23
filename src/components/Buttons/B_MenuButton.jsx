@@ -1,27 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { MenuIcon } from '../../assets/svg';
 
 MenuButton.propTypes = {
   onClick: PropTypes.func,
-  active: PropTypes.bool,
-  className: PropTypes.string,
-  ariaExpanded: PropTypes.string,
-  ariaControls: PropTypes.string
+  type: PropTypes.string,
+  collapsed: PropTypes.bool,
+  className: PropTypes.string
 };
 
-function MenuButton(props) {
-  let classes = 'boogey-menu-32';
-  if (props.active) classes += ' active';
-  if (props.className) classes += ` ${props.className}`;
-  let finalProps = {
-    'type': 'button',
-    'className': classes,
-    'onClick': props.onClick,
-    'aria-controls': props.ariaControls
-  };
-  if (props.ariaExpanded) finalProps['aria-expanded'] = props.ariaExpanded;
-
-  return <button {...finalProps}></button>;
+function MenuButton({ collapsed, className, ...rest }) {
+  className += collapsed ? ' collapsed' : '';
+  return (
+    <button className={className} {...rest}>
+      <MenuIcon />
+    </button>
+  );
 }
 
 export default MenuButton;

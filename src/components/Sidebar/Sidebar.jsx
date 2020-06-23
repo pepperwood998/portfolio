@@ -3,19 +3,19 @@ import React from 'react';
 import './sidebar.css';
 
 Sidebar.propTypes = {
-  active: PropTypes.bool,
-  onSetSidebarOpen: PropTypes.func,
+  collapsed: PropTypes.bool,
   className: PropTypes.string
 };
 
-function Sidebar(props) {
-  let sideBarClasses = 'side-bar';
-  if (props.active) {
-    sideBarClasses += ' active';
-  }
-  if (props.className) sideBarClasses += ` ${props.className}`;
+function Sidebar({ collapsed, className, children, ...rest }) {
+  let babaSidebar = 'baba-sidebar';
+  className += collapsed ? ` ${babaSidebar} collapsed` : ` ${babaSidebar}`;
 
-  return <aside className={sideBarClasses}>{props.children}</aside>;
+  return (
+    <aside className={className} {...rest}>
+      {children}
+    </aside>
+  );
 }
 
 export default Sidebar;

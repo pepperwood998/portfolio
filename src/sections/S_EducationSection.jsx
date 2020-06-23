@@ -7,8 +7,8 @@ import { AddIcon, MinusIcon } from '../assets/svg';
 
 function EducationSection() {
   return (
-    <Accordion defaultActiveKey='0' className='mb-5'>
-      <div className='card-accordion'>
+    <Accordion as='ol' defaultActiveKey='0' className='mb-5'>
+      <li className='card-accordion'>
         <TogglePanelContainer
           eventKey='0'
           title='Bachelor Degree of Computer Science
@@ -22,8 +22,8 @@ function EducationSection() {
             </p>
           </div>
         </Accordion.Collapse>
-      </div>
-      <div className='card-accordion'>
+      </li>
+      <li className='card-accordion'>
         <TogglePanelContainer
           eventKey='1'
           title='High School Secondary Education
@@ -39,7 +39,7 @@ function EducationSection() {
             </p>
           </div>
         </Accordion.Collapse>
-      </div>
+      </li>
     </Accordion>
   );
 }

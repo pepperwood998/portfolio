@@ -1,29 +1,16 @@
-.side-bar {
+.baba-sidebar {
   position: fixed;
-  left: calc(0px - var(--side-bar-width));
-  width: var(--side-bar-width);
+  left: calc(0px - var(--sidebar-width));
+  width: var(--sidebar-width);
   z-index: 1;
 }
-.side-bar-overlay {
-  position: fixed;
-  display: none;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-}
 @media screen and (max-width: 992px) {
-  .side-bar.active {
+  .baba-sidebar:not([class*='collapsed']) {
     left: 0;
-  }
-  .side-bar-overlay.active {
-    display: block;
   }
 }
 @media screen and (min-width: 992px) {
-  .side-bar {
+  .baba-sidebar {
     left: 0;
   }
 }

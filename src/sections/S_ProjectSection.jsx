@@ -8,9 +8,9 @@ function ProjectSection() {
 
   return (
     <React.Fragment>
-      <div className='display-grid display-grid-2-lg mb-4'>
+      <ol className='display-grid display-grid-2-lg mb-4'>
         {projects.map((v, i) => (
-          <div
+          <li
             className='project-card'
             style={{ backgroundImage: `url(${bg5})` }}
             key={i}
@@ -43,9 +43,9 @@ function ProjectSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
       <button
         type='button'
         onClick={loadMore}

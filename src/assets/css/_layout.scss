@@ -73,19 +73,11 @@ $screenBreakPoints: (
   grid-template-columns: minmax(0, 1fr);
   grid-gap: 1.5em;
 
-  &.display-grid-2 {
-    @include applyScreenBreakOn {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  &.display-grid-3 {
-    @include applyScreenBreakOn {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-  &.display-grid-4 {
-    @include applyScreenBreakOn {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+  @for $cols from 1 through 12 {
+    &.display-grid-#{$cols} {
+      @include applyScreenBreakOn {
+        grid-template-columns: repeat($cols, minmax(0, 1fr));
+      }
     }
   }
 }
@@ -120,4 +112,11 @@ $screenBreakPoints: (
       }
     }
   }
+}
+@mixin applyMultiLineEllipsis($lines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
 }

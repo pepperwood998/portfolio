@@ -27,7 +27,7 @@ import { Sidebar } from './components/sidebar';
 import { ContactSection, EducationSection, ProjectSection } from './sections';
 
 function App() {
-  const [sideBarActive, setSideBarActive] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const carouselItems = [
     {
@@ -60,9 +60,27 @@ function App() {
     { counter: 20, label: 'Group projects' }
   ];
   const specialtyItems = [
-    { title: 'Javascript', desc: '', theme: 'yellow', icon: JsIcon },
-    { title: 'Java', desc: '', theme: 'orange', icon: JavaIcon },
-    { title: 'HTML & CSS', desc: '', theme: 'red', icon: CssIcon },
+    {
+      title: 'Javascript',
+      desc:
+        'Been learning since middle school, apply in some canvas-based game and now mostly in ReactJS framework',
+      theme: 'yellow',
+      icon: JsIcon
+    },
+    {
+      title: 'Java',
+      desc:
+        'This is my primary strong-typed, OOP oriented language choice. Some experience in Java Core and Spring Framework',
+      theme: 'orange',
+      icon: JavaIcon
+    },
+    {
+      title: 'HTML & CSS',
+      desc:
+        'Baisc HTML knowledge with some semantic tagging. Along with CSS knowledge of positioning, layout and SCSS framework',
+      theme: 'red',
+      icon: CssIcon
+    },
     { title: 'ReactJS', desc: '', theme: 'blue', icon: ReactIcon },
     { title: 'Spring Boot', desc: '', theme: 'green', icon: SpringIcon },
     { title: 'MySQL', desc: '', theme: 'blue-dark', icon: MysqlIcon }
@@ -75,42 +93,42 @@ function App() {
         'Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.'
     }
   ];
-  let sideBarOverlayClasses = 'side-bar-overlay';
-  sideBarOverlayClasses += sideBarActive ? ' active' : '';
+  let sideBarOverlayClasses = 'sidebar-overlay';
+  sideBarOverlayClasses += sidebarCollapsed ? ' collapsed' : '';
   const handleToggleSideBar = () => {
-    setSideBarActive(!sideBarActive);
+    setSidebarCollapsed(!sidebarCollapsed);
   };
-  const handleSetSidebarOpen = open => {
-    setSideBarActive(open);
+  const handleSetSidebarCollapsed = collapsed => {
+    setSidebarCollapsed(collapsed);
   };
 
   return (
-    <div className='App'>
-      <div className='top-banner-wrapper'>
+    <div className='app'>
+      <header className='top-banner-wrapper'>
         <div className='top-banner'>
           <MenuButton
-            className='side-bar-toggler-button'
-            active={sideBarActive}
+            type='button'
+            collapsed={sidebarCollapsed}
             onClick={handleToggleSideBar}
-            ariaExpanded={sideBarActive.toString()}
-            ariaControls='sidebar'
+            className='sidebar-toggler-button'
+            aria-controls='sidebar'
           />
           <h3 className='top-banner__title ellipsis-normal'>
             <span>Tuan Dao</span>
           </h3>
         </div>
-      </div>
+      </header>
       <div
         className={sideBarOverlayClasses}
-        onClick={() => handleSetSidebarOpen(false)}
+        onClick={() => handleSetSidebarCollapsed(true)}
       ></div>
-      <Sidebar active={sideBarActive} onSetSidebarOpen={handleSetSidebarOpen}>
-        <SidebarContent setSideBarActive={setSideBarActive} />
+      <Sidebar className='sidebar' collapsed={sidebarCollapsed}>
+        <SidebarContent setSideBarActive={setSidebarCollapsed} />
       </Sidebar>
 
-      <div className='App__main-content' id='container-scroll'>
-        <main className='main-content'>
-          <section className='main-content__section' id='home'>
+      <main className='app__main-content' id='container-scroll'>
+        <div className='main-content'>
+          <header className='main-content__section' id='home'>
             <Carousel>
               {carouselItems.map((v, i) => (
                 <Carousel.Item key={i}>
@@ -125,8 +143,8 @@ function App() {
                 </Carousel.Item>
               ))}
             </Carousel>
-          </section>
-          <MainSection id='about' small='Who am I?' big='About me'>
+          </header>
+          <MainSection as='article' id='about' small='Who am I?' big='About me'>
             <p>
               Hi I'm Jackson Ford On her way she met a copy. The copy warned the
               Little Blind Text, that where it came from it would have been
@@ -140,16 +158,17 @@ function App() {
               line of blind text by the name of Lorem Ipsum decided to leave for
               the far World of Grammar.
             </p>
-            <div className='display-grid display-grid-2-sm display-grid-4-lg mb-5'>
+            <ul className='display-grid display-grid-2-sm display-grid-4-lg mb-5'>
               {aboutItems.map((v, i) => (
-                <div className={`basic-card basic-card--${v.theme}`} key={i}>
-                  <div className='basic-card-inner'>
-                    <v.icon className='baba-icon-32 basic-card-icon' />
-                    <h2 className='basic-card-title'>{v.title}</h2>
-                  </div>
-                </div>
+                <li
+                  className={`about-card basic-card basic-card--${v.theme}`}
+                  key={i}
+                >
+                  <v.icon className='baba-icon-32 about-card-icon' />
+                  <h2 className='about-card-title'>{v.title}</h2>
+                </li>
               ))}
-            </div>
+            </ul>
           </MainSection>
           <section className='main-content__section'>
             <div
@@ -158,20 +177,25 @@ function App() {
             >
               <div className='statistic-banner__overlay'></div>
               <div className='statistic-banner__content content-padder'>
-                <div className='display-grid display-grid-2-sm display-grid-4-md'>
+                <ul className='display-grid display-grid-2-sm display-grid-4-md'>
                   {statisticItems.map((v, i) => (
-                    <div className='statistic-block' key={i}>
+                    <li className='statistic-block' key={i}>
                       <span className='statistic-counter'>
                         {formatNumber(v.counter)}
                       </span>
                       <span className='statistic-counter-label'>{v.label}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             </div>
           </section>
-          <MainSection id='skills' small="What I'm capable of?" big='My skills'>
+          <MainSection
+            as='article'
+            id='skills'
+            small="What I'm capable of?"
+            big='My skills'
+          >
             <p>
               The Big Oxmox advised her not to do so, because there were
               thousands of bad Commas, wild Question Marks and devious Semikoli,
@@ -179,27 +203,20 @@ function App() {
               versalia, put her initial into the belt and made herself on the
               way.
             </p>
-            <div className='display-grid display-grid-2-sm display-grid-3-lg pt-5'>
-              {specialtyItems.map((v, i) => {
-                return (
-                  <div
-                    className={`basic-card basic-card--${v.theme} basic-card--pop`}
-                    key={i}
-                  >
-                    <div className='basic-card-inner'>
-                      <div className='basic-card-icon-wrapper'>
-                        <v.icon className='baba-icon-32' />
-                      </div>
-                      <h2 className='basic-card-title'>{v.title}</h2>
-                      <p className='basic-card-desc'>
-                        Separated they live in Bookmarksgrove right at the coast
-                        of the Semantics
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <ul className='skill-grid display-grid display-grid-2-sm display-grid-3-lg pt-3 mb-5'>
+              {specialtyItems.map((v, i) => (
+                <li
+                  className={`skill-card basic-card basic-card--${v.theme}`}
+                  key={i}
+                >
+                  <v.icon className='baba-icon-32 skill-card-icon' />
+                  <div className='skill-card-bg'></div>
+                  <h2 className='skill-card-title'>{v.title}</h2>
+                  <p className='skill-card-desc'>{v.desc}</p>
+                  <span className='skill-card-read-more'>Read more</span>
+                </li>
+              ))}
+            </ul>
           </MainSection>
           <section className='main-content__section'>
             <div className='content-padder'>
@@ -217,31 +234,33 @@ function App() {
             small="What I've been doing?"
             big='Experience'
           >
-            <div className='timeline-normal mb-3'>
+            <ol className='timeline-normal mb-3'>
               {timelineItems.map((v, i) => (
-                <article className='timeline-entry' key={i}>
-                  <div className='timeline-entry-inner'>
-                    <div className='timeline-icon baba-bg--blue'>
-                      <WorkIcon className='baba-icon-24' />
+                <li key={i}>
+                  <article className='timeline-entry'>
+                    <div className='timeline-entry-inner'>
+                      <div className='timeline-icon baba-bg--blue'>
+                        <WorkIcon className='baba-icon-24' />
+                      </div>
+                      <div className='timeline-content'>
+                        <h2>
+                          <span>{v.title}</span>
+                          <span className='timeline-content__time-range-text'>
+                            {v.time}
+                          </span>
+                        </h2>
+                        <p>{v.description}</p>
+                      </div>
                     </div>
-                    <div className='timeline-content'>
-                      <h2>
-                        <span>{v.title}</span>
-                        <span className='timeline-content__time-range-text'>
-                          {v.time}
-                        </span>
-                      </h2>
-                      <p>{v.description}</p>
-                    </div>
-                  </div>
-                </article>
+                  </article>
+                </li>
               ))}
               <article className='timeline-entry'>
                 <div className='timeline-entry-inner'>
                   <div className='timeline-icon timeline-icon--empty'></div>
                 </div>
               </article>
-            </div>
+            </ol>
           </MainSection>
           <MainSection
             id='projects'
@@ -260,8 +279,8 @@ function App() {
           <MainSection id='contact' small='Get in touch' big='Contact'>
             <ContactSection />
           </MainSection>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }
@@ -306,16 +325,16 @@ function SidebarContent(props) {
 
   return (
     <React.Fragment>
-      <header className='side-bar__header' role='banner'>
-        <div className='side-bar-avatar'>
+      <header className='sidebar__header' role='banner'>
+        <div className='sidebar-avatar'>
           <div className='image-wrapper'>
             <img src={Avatar} alt='Profile cover' className='image' />
           </div>
         </div>
-        <h2 className='side-bar-title'>Tuan Dao</h2>
-        <span className='side-bar-profession'>Web Developer</span>
+        <h2 className='sidebar-title'>Tuan Dao</h2>
+        <span className='sidebar-profession'>Web Developer</span>
       </header>
-      <div className='side-bar__nav'>
+      <div className='sidebar__nav'>
         <nav className='nav-bar' role='navigation'>
           <ul className='nav-bar-nav'>
             {navItems.map((item, i) => (
