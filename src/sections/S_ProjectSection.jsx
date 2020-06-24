@@ -14,14 +14,11 @@ function ProjectSection() {
             <div className='project-card'>
               <div className='project-card-inner'>
                 <div className='project-card-info'>
-                  <p>
-                    This project is the portfolio for my career application.
-                    Built with ReactJS with responsive design
-                  </p>
+                  <p>{v.description}</p>
                   <h3 className='ellipsis-normal'>
-                    <a href='/'>The Portfolio</a>
+                    <a href='/'>{v.name}</a>
                   </h3>
-                  <span className='ellipsis-normal'>Javascript</span>
+                  <span className='ellipsis-normal'>{v.language}</span>
                 </div>
                 <div className='project-card-action'>
                   <div className='project-card-stats'>
@@ -29,13 +26,25 @@ function ProjectSection() {
                       <div className='d-flex align-items-center'>
                         <WatchIcon className='baba-icon-16' />
                       </div>
-                      <span className='ellipsis-normal pl-2'>125</span>
+                      <span className='ellipsis-normal pl-2'>
+                        {v.watchersCount}
+                      </span>
                     </div>
                     <div className='project-card-status'>
                       <div className='d-flex align-items-center'>
                         <StarIcon className='baba-icon-16' />
                       </div>
-                      <span className='ellipsis-normal pl-2'>69</span>
+                      <span className='ellipsis-normal pl-2'>
+                        {v.starsCount}
+                      </span>
+                    </div>
+                    <div className='project-card-status'>
+                      <div className='d-flex align-items-center'>
+                        <ForkIcon className='baba-icon-16' />
+                      </div>
+                      <span className='ellipsis-normal pl-2'>
+                        {v.forksCount}
+                      </span>
                     </div>
                   </div>
                   <button className='project-card-view'></button>
