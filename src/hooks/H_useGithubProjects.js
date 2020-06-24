@@ -37,6 +37,7 @@ function useGithubProjects() {
 const mapProject = project => ({
   name: project.name,
   language: project.language,
+  description: project.description,
   watchersCount: project['watchers_count'],
   starsCount: project['stargazers_count'],
   forksCount: project['forks_count'],

@@ -8,38 +8,37 @@ function ProjectSection() {
 
   return (
     <React.Fragment>
-      <ol className='display-grid display-grid-2-lg mb-4'>
+      <ol className='display-grid display-grid-2-md display-grid-3-xl mb-4'>
         {projects.map((v, i) => (
-          <li
-            className='project-card'
-            style={{ backgroundImage: `url(${bg5})` }}
-            key={i}
-          >
-            <div className='project-card-inner'>
-              <div className='project-card__project-title'>
-                <h3 className='ellipsis-normal'>
-                  <a href={v.url}>{v.name}</a>
-                </h3>
-                <span>{v.language}</span>
-              </div>
-              <div className='project-card__project-card-status'>
-                <div title='Followers' className='project-card-status'>
-                  <div className='d-flex align-items-center'>
-                    <WatchIcon className='baba-icon-16 mr-2' />
-                  </div>
-                  <span className='ellipsis-normal'>{v.watchersCount}</span>
+          <li className='project-card-wrapper project-card-wrapper-md' key={i}>
+            <div className='project-card'>
+              <div className='project-card-inner'>
+                <div className='project-card-info'>
+                  <p>
+                    This project is the portfolio for my career application.
+                    Built with ReactJS with responsive design
+                  </p>
+                  <h3 className='ellipsis-normal'>
+                    <a href='/'>The Portfolio</a>
+                  </h3>
+                  <span className='ellipsis-normal'>Javascript</span>
                 </div>
-                <div title='Favorite' className='project-card-status'>
-                  <div className='d-flex align-items-center'>
-                    <StarIcon className='baba-icon-16 mr-2' />
+                <div className='project-card-action'>
+                  <div className='project-card-stats'>
+                    <div className='project-card-status'>
+                      <div className='d-flex align-items-center'>
+                        <WatchIcon className='baba-icon-16' />
+                      </div>
+                      <span className='ellipsis-normal pl-2'>125</span>
+                    </div>
+                    <div className='project-card-status'>
+                      <div className='d-flex align-items-center'>
+                        <StarIcon className='baba-icon-16' />
+                      </div>
+                      <span className='ellipsis-normal pl-2'>69</span>
+                    </div>
                   </div>
-                  <span className='ellipsis-normal'>{v.starsCount}</span>
-                </div>
-                <div title='Forked branches' className='project-card-status'>
-                  <div className='d-flex align-items-center'>
-                    <ForkIcon className='baba-icon-16 mr-2' />
-                  </div>
-                  <span className='ellipsis-normal'>{v.forksCount}</span>
+                  <button className='project-card-view'></button>
                 </div>
               </div>
             </div>

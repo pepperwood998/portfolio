@@ -9,6 +9,7 @@ $screenBreakPoints: (
   @return map-get($screenBreakPoints, $name);
 }
 @mixin applyScreenBreakOff {
+  @content;
   @media screen and (min-width: getScreenBreakSize('xs')) {
     &-sm,
     &-md,
@@ -64,7 +65,9 @@ $screenBreakPoints: (
     }
   }
   @media screen and (min-width: getScreenBreakSize('xl')) {
-    @content;
+    &-xl {
+      @content;
+    }
   }
 }
 
@@ -84,7 +87,6 @@ $screenBreakPoints: (
 
 .d-flex-row {
   display: flex;
-  flex-direction: column;
 
   &--al-center {
     align-items: center;
@@ -98,6 +100,9 @@ $screenBreakPoints: (
       align-items: unset;
     }
   }
+}
+.flex-1 {
+  flex: 1;
 }
 @mixin addSpace($paddingLeft: 0, $paddingTop: 0) {
   &.d-flex-row > *:not(:first-child) {
