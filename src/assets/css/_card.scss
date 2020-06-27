@@ -136,17 +136,13 @@
     .project-card-inner {
       flex-direction: row;
     }
-    .project-card-action {
-      flex-direction: column;
-    }
     .project-card-stats {
       flex-direction: column;
+      width: 100px;
     }
-    .project-card-status {
-      margin: 0 10px;
-      &:not(:first-child) {
-        margin-top: 10px;
-      }
+    .project-card-status + .project-card-status {
+      margin-top: 5px;
+      margin-left: 0px;
     }
   }
   @include applyScreenBreakOn {
@@ -154,17 +150,33 @@
     .project-card-inner {
       flex-direction: column;
     }
-    .project-card-action {
-      flex-direction: row;
-    }
     .project-card-stats {
       flex-direction: row;
-      align-items: baseline;
+      align-items: flex-start;
+      width: 100%;
+      height: 100px;
     }
     .project-card-status {
-      margin: 0 0 0 10px;
-      &:not(:first-child) {
+      flex: 1;
+      overflow: hidden;
+      + .project-card-status {
         margin-top: 0px;
+        margin-left: 5px;
+      }
+    }
+    .project-card-inner:hover {
+      .project-card-info * {
+        color: #000;
+      }
+      .project-card-info-overlay {
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+      .project-card-view {
+        box-shadow: none;
+        width: 300px;
+        height: 300px;
+        bottom: -100px;
+        right: -100px;
       }
     }
   }
@@ -179,22 +191,35 @@
   box-shadow: 0px 0px 10px 0px rgba(106, 106, 106, 0.5);
 }
 .project-card-inner {
+  position: relative;
+  overflow: hidden;
   display: flex;
   width: 100%;
   height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.project-card-info h3,
+.project-card-info span,
+.project-card-info p,
+.project-card-status {
+  position: relative;
+  z-index: 1;
 }
 .project-card-info,
-.project-card-action {
+.project-card-stats {
   height: 100%;
 }
 .project-card-info {
-  flex: 3;
+  flex: 1;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   padding: 1.5em;
-  *,
+  position: relative;
   h3,
+  a,
   span,
   p {
     color: #fff;
@@ -210,16 +235,22 @@
   h3 {
     @include heading-banner-smooth(1.5em);
   }
+  a:hover {
+    text-decoration: none;
+  }
 }
-.project-card-action {
-  flex: 1;
-  overflow: hidden;
-  background-color: #fff;
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-between;
+.project-card-info-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: background-color 0.2s ease;
 }
 .project-card-stats {
+  overflow: hidden;
+  background-color: #fff;
+  padding: 10px;
   display: flex;
 }
 .project-card-status {
@@ -230,12 +261,21 @@
   border-radius: 3px;
 }
 .project-card-view {
+  bottom: 10px;
+  right: 10px;
+  position: absolute;
   align-self: flex-end;
-  width: 60px;
-  height: 60px;
-  margin: 0 10px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 7px -2px rgba(0, 0, 0, 0.5);
+  transition: 0.2s ease;
+}
+.project-card-forward {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  z-index: 1;
 }
 
 .card-accordion {

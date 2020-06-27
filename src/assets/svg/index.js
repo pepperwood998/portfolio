@@ -19,3 +19,4 @@ export { ReactComponent as StarIcon } from './star.svg';
 export { ReactComponent as WatchIcon } from './watch.svg';
 export { ReactComponent as WebIcon } from './web.svg';
 export { ReactComponent as WorkIcon } from './work.svg';
+export { ReactComponent as ArrowRightIcon } from './arrow-right.svg';
