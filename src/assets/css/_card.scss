@@ -189,7 +189,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  transition: background-position 0.3s ease;
+  @include bundleTransition(background-position 0.3s ease);
   &:hover {
     background-position: center -10px;
     .project-card-info p {
@@ -206,7 +206,6 @@
   flex-direction: column;
   padding: 1.5em;
   position: relative;
-  transition: opacity 0.2s ease;
   justify-content: flex-end;
   h3,
   a,
@@ -220,9 +219,13 @@
   }
   p {
     flex: 1;
-    overflow: hidden;
+    overflow: auto;
     margin: 0;
-    transition: flex 0.3s ease, opacity 0.4s ease, transform 0.5s ease;
+    @include bundleTransition(
+      flex 0.3s ease,
+      opacity 0.4s ease,
+      transform 0.5s ease
+    );
   }
   h3 {
     @include heading-banner-smooth(1.5em);

@@ -77,3 +77,11 @@
     background-color: #00728b;
   }
 }
+
+@mixin bundleTransition($transitionList...) {
+  $props: append($transitionList, comma);
+  transition: $props;
+  -webkit-transition: $props;
+  -moz-transition: $props;
+  -o-transition: $props;
+}
