@@ -48,12 +48,11 @@ function ProjectSection() {
                 style={{ backgroundImage: `url(${getRoundBg(i)})` }}
               >
                 <div className='project-card-info'>
-                  <div className='project-card-info-overlay'></div>
-                  <p>{v.description}</p>
                   <h3 className='ellipsis-normal'>
                     <a href='/'>{v.name}</a>
                   </h3>
                   <span className='ellipsis-normal'>{v.language}</span>
+                  <p>{v.description}</p>
                 </div>
                 <div className='project-card-stats'>
                   <div className='project-card-status'>
@@ -77,8 +76,6 @@ function ProjectSection() {
                     <span className='ellipsis-normal pl-2'>{v.forksCount}</span>
                   </div>
                 </div>
-                <button className='project-card-view btn-outline-none'></button>
-                <ArrowRightIcon className='baba-icon-24 project-card-forward' />
               </div>
             </div>
           </li>
