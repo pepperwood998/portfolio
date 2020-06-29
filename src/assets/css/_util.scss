@@ -79,9 +79,8 @@
 }
 
 @mixin bundleTransition($transitionList...) {
-  $props: append($transitionList, comma);
-  transition: $props;
-  -webkit-transition: $props;
-  -moz-transition: $props;
-  -o-transition: $props;
+  transition: $transitionList;
+  -webkit-transition: $transitionList;
+  -moz-transition: $transitionList;
+  -o-transition: $transitionList;
 }
