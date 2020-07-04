@@ -49,7 +49,7 @@ function ProjectSection() {
               >
                 <div className='project-card-info'>
                   <h3 className='ellipsis-normal'>
-                    <a href='/'>{v.name}</a>
+                    <a href={v.url}>{v.name}</a>
                   </h3>
                   <span className='ellipsis-normal'>{v.language}</span>
                   <p>{v.description}</p>
